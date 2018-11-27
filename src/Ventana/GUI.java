@@ -5,6 +5,8 @@
  */
 package Ventana;
 
+import Controlador.Controller;
+
 /**
  *
  * @author rauldiego
@@ -14,6 +16,10 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
+    private Controller control;//Se comunica con el controlador para llevar a cabo las funcionalidades requeridas
+    private char fase;//Se indica que fase del juego estan
+    private int numPlayers;//Numero de jugadores en la mesa
+    
     public GUI() {
         initComponents();
     }
