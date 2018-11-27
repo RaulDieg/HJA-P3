@@ -6,6 +6,7 @@
 package Ventana;
 
 import Controlador.Controller;
+import Parseador.Parser;
 
 /**
  *
@@ -17,6 +18,7 @@ public class GUI extends javax.swing.JFrame {
      * Creates new form GUI
      */
     private Controller control;//Se comunica con el controlador para llevar a cabo las funcionalidades requeridas
+    private Parser mapCartas;//Llama al parser para elaborar el map con todas las cartas
     private char fase;//Se indica que fase del juego estan
     private int numPlayers;//Numero de jugadores en la mesa
     
