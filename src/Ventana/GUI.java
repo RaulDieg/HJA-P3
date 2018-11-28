@@ -7,6 +7,8 @@ package Ventana;
 
 import Controlador.Controller;
 import Parseador.Parser;
+import java.awt.Color;
+import javax.swing.JTextField;
 
 /**
  *
@@ -21,9 +23,31 @@ public class GUI extends javax.swing.JFrame {
     private Parser mapCartas;//Llama al parser para elaborar el map con todas las cartas
     private char fase;//Se indica que fase del juego estan
     private int numPlayers;//Numero de jugadores en la mesa
+    private JTextField arrayDeCampos [] = new JTextField[13];
+    private boolean empezada;
+    private boolean cartascogias[] = new boolean[169];
+    private int turno;
+    
+    private static String todosLosPares[] = {"AA", "AKs", "AQs", "AJs", "ATs", "A9s", "A8s", "A7s",
+        "A6s", "A5s", "A4s", "A3s", "A2s",
+        "AKo", "KK", "KQs", "KJs", "KTs", "K9s", "K8s", "K7s", "K6s", "K5s", "K4s", "K3s", "K2s",
+        "AQo", "KQo", "QQ", "QJs", "QTs", "Q9s", "Q8s", "Q7s", "Q6s", "Q5s", "Q4s", "Q3s", "Q2s",
+        "AJo", "KJo", "QJo", "JJ", "JTs", "J9s", "J8s", "J7s", "J6s", "J5s", "J4s", "J3s", "J2s",
+        "ATo", "KTo", "QTo", "JTo", "TT", "T9s", "T8s", "T7s", "T6s", "T5s", "T4s", "T3s", "T2s",
+        "A9o", "K9o", "Q9o", "J9o", "T9o", "99", "98s", "97s", "96s", "95s", "94s", "93s", "92s",
+        "A8o", "K8o", "Q8o", "J8o", "T8o", "98o", "88", "87s", "86s", "85s", "84s", "83s", "82s",
+        "A7o", "K7o", "Q7o", "J7o", "T7o", "97o", "87o", "77", "76s", "75s", "74s", "73s", "72s",
+        "A6o", "K6o", "Q6o", "J6o", "T6o", "96o", "86o", "76o", "66", "65s", "64s", "63s", "62s",
+        "A5o", "K5o", "Q5o", "J5o", "T5o", "95o", "85o", "75o", "65o", "55", "54s", "53s", "52s",
+        "A4o", "K4o", "Q4o", "J4o", "T4o", "94o", "84o", "74o", "64o", "54o", "44", "43s", "42s",
+        "A3o", "K3o", "Q3o", "J3o", "T3o", "93o", "83o", "73o", "63o", "53o", "43o", "33", "32s",
+        "A2o", "K2o", "Q2o", "J2o", "T2o", "92o", "82o", "72o", "62o", "52o", "42o", "32o", "22",};
     
     public GUI() {
         initComponents();
+        iniArrays();
+        empezada = false;
+        turno = 0;
     }
 
     /**
@@ -35,21 +59,116 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
+        jTextField8 = new javax.swing.JTextField();
+        jTextField9 = new javax.swing.JTextField();
+        jTextField10 = new javax.swing.JTextField();
+        jTextField11 = new javax.swing.JTextField();
+        jTextField12 = new javax.swing.JTextField();
+        jTextField13 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAutoRequestFocus(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextField1.setText("jTextField1");
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 110, 30));
+
+        jTextField2.setText("jTextField2");
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 110, -1));
+
+        jTextField3.setText("jTextField3");
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 110, -1));
+
+        jTextField4.setText("jTextField4");
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 110, -1));
+
+        jTextField5.setText("jTextField5");
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 110, -1));
+
+        jTextField6.setText("jTextField6");
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 110, -1));
+
+        jTextField7.setText("jTextField7");
+        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, 110, -1));
+
+        jTextField8.setText("jTextField8");
+        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, 110, -1));
+
+        jTextField9.setText("jTextField9");
+        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 520, 110, -1));
+
+        jTextField10.setText("jTextField10");
+        getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, 110, -1));
+
+        jTextField11.setText("jTextField11");
+        getContentPane().add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 440, 120, -1));
+
+        jTextField12.setText("jTextField12");
+        getContentPane().add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 400, 120, -1));
+
+        jTextField13.setText("(board)");
+        jTextField13.setOpaque(false);
+        jTextField13.setSelectionColor(new java.awt.Color(43, 105, 0));
+        jTextField13.setBackground(new Color(0, 0, 0, 0));
+        jTextField13.setBorder(null);
+        jTextField13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField13ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 280, 90));
+
+        jButton1.setBackground(new java.awt.Color(237, 22, 22));
+        jButton1.setText("NEXT");
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 520, 130, 60));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon-bspline.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 667, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField13ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       if (empezada){ // saco carta para el board
+           switch(turno){
+                case 0: this.jTextField13.setText(generoCart());
+                        this.jTextField13.setText(this.jTextField13.getText() + ","+ generoCart());
+                        this.jTextField13.setText(this.jTextField13.getText() + ","+ generoCart());
+                        turno++;
+                break;
+                case 1: this.jTextField13.setText(this.jTextField13.getText() + ","+ generoCart());
+                        turno++;
+                break;
+                case 2: this.jTextField13.setText(this.jTextField13.getText() + ","+ generoCart());
+                        turno++;
+                break;
+           }
+       }
+       else{
+           //genero las gartas para los jugadores
+           empezada = true;
+           generoCartas();
+       }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,5 +206,121 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
+    private javax.swing.JTextField jTextField13;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
+
+    private void iniArrays() {
+        for (int i = 0; i < this.cartascogias.length; i++){
+            this.cartascogias[i] = false;
+        }
+        
+        for (int i = 0; i < this.arrayDeCampos.length; i++){
+            this.arrayDeCampos[i] = new JTextField();
+        }
+        this.arrayDeCampos[0] = this.jTextField1;
+        this.arrayDeCampos[1] = this.jTextField2;
+        this.arrayDeCampos[2] = this.jTextField3;
+        this.arrayDeCampos[3] = this.jTextField4;    
+        this.arrayDeCampos[4] = this.jTextField5;
+        this.arrayDeCampos[5] = this.jTextField6;
+        this.arrayDeCampos[6] = this.jTextField7;
+        this.arrayDeCampos[7] = this.jTextField8;
+        this.arrayDeCampos[8] = this.jTextField9;
+        this.arrayDeCampos[9] = this.jTextField10;
+        this.arrayDeCampos[10] = this.jTextField11;
+        this.arrayDeCampos[11] = this.jTextField12;    
+        this.arrayDeCampos[12] = this.jTextField13;
+        
+    }
+
+    private void generoCartas() {
+        int numero;
+        boolean elegida = false;
+        
+ 
+         while(!elegida){
+             numero = (int) (Math.random() * 168) + 1;
+         if ( this.cartascogias[numero] == false){
+             this.cartascogias[numero] = true;
+             this.jTextField1.setText(todosLosPares[numero]);
+             elegida = true;
+            }
+        }
+         elegida = false;
+         while(!elegida){
+             numero = (int) (Math.random() * 168) + 1;
+         if ( this.cartascogias[numero] == false){
+             this.cartascogias[numero] = true;
+             this.jTextField3.setText(todosLosPares[numero]);
+             elegida = true;
+            }
+        }
+         elegida = false;
+         while(!elegida){
+             numero = (int) (Math.random() * 168) + 1;
+         if ( this.cartascogias[numero] == false){
+             this.cartascogias[numero] = true;
+             this.jTextField5.setText(todosLosPares[numero]);
+             elegida = true;
+            }
+        }
+                  elegida = false;
+         while(!elegida){
+             numero = (int) (Math.random() * 168) + 1;
+         if ( this.cartascogias[numero] == false){
+             this.cartascogias[numero] = true;
+             this.jTextField7.setText(todosLosPares[numero]);
+             elegida = true;
+            }
+        }
+         elegida = false;
+         while(!elegida){
+             numero = (int) (Math.random() * 168) + 1;
+         if ( this.cartascogias[numero] == false){
+             this.cartascogias[numero] = true;
+             this.jTextField9.setText(todosLosPares[numero]);
+             elegida = true;
+            }
+        }
+         elegida = false;
+         while(!elegida){
+             numero = (int) (Math.random() * 168) + 1;
+         if ( this.cartascogias[numero] == false){
+             this.cartascogias[numero] = true;
+             this.jTextField11.setText(todosLosPares[numero]);
+             elegida = true;
+            }
+        }
+         
+    }
+    
+    private String generoCart(){
+        int numero;
+        boolean elegida = false;
+        String sol ="";
+ 
+         while(!elegida){
+             numero = (int) (Math.random() * 168) + 1;
+         if ( this.cartascogias[numero] == false){
+             this.cartascogias[numero] = true;
+             sol = todosLosPares[numero];
+             elegida = true;
+            }
+        }
+    return sol;
+    }
 }
