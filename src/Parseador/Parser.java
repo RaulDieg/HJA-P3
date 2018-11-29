@@ -20,6 +20,10 @@ public class Parser {
     HashMap<String,Carta> cartasBaraja = new HashMap<>();
     
     public Parser(){
-        
+        //eleabora un hashmap con todas las cartas de la baraja;
+    }
+    
+    public HashMap<String,Carta> getCartas(){
+        return cartasBaraja;
     }
 }
