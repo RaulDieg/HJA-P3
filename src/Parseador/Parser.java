@@ -21,6 +21,7 @@ public class Parser {
     
     public Parser(){
         //eleabora un hashmap con todas las cartas de la baraja;
+        
     }
     
     public HashMap<String,Carta> getCartas(){
