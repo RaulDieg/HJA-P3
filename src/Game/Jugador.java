@@ -8,15 +8,16 @@ package Game;
 import java.util.ArrayList;
 
 
-/**
- *
- * @author rauldiego
- */
+
 public class Jugador {
     private ArrayList<Carta> cartasJugador = new ArrayList<>();
     private int numOfWins = 0;
     
     public Jugador(ArrayList<Carta> aux){
         
+    }
+    
+    public void addCarta(Carta aux){
+        cartasJugador.add(aux);
     }
 }

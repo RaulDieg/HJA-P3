@@ -9,10 +9,15 @@ package Game;
 public class Carta {
     private int valor;
     private char palo;
+    private boolean elegida;
     
     public Carta( char va, char color)  {
         valor = charToNumber(va);
         palo = color;
+    }
+    public Carta( int va, int color)  {
+        valor = va;
+        palo = numberToPalo(color);
     }
     
     public Carta( int va, char color)  {
@@ -56,10 +61,33 @@ public class Carta {
         }     
         return '0';
     }
-     
     
-    public char getPalo(){
-        return palo;
+    private char numberToPalo(int va){
+        
+        switch(va){
+            case 0: 
+                return 'h';
+            case 1:
+                return 'd';
+            case 2:
+                return 's';
+            default:
+                return 'c';  
+        }
+    }
+    
+    public int paloToNumber(){
+        
+        switch(palo){
+            case 'h': 
+                return 0;
+            case 'd':
+                return 1;
+            case 's':
+                return 2;
+            default:
+                return 3;  
+        }
     }
     
     private int charToNumber(char va){
@@ -95,6 +123,19 @@ public class Carta {
             	return -1;
         }
     }
+    
+    
+    public boolean getElegida(){
+        return elegida;
+    }
+    public void setElegida(boolean aux){
+        elegida = aux;
+    }
+        
+    public char getPalo(){
+        return palo;
+    }
+        
      public int getValor() {
         return valor;
     }

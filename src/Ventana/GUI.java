@@ -7,13 +7,8 @@ package Ventana;
 
 import Controlador.Controller;
 import Parseador.Parser;
-import java.awt.Color;
-import javax.swing.JTextField;
 
-/**
- *
- * @author rauldiego
- */
+
 public class GUI extends javax.swing.JFrame {
 
     /**
@@ -23,32 +18,13 @@ public class GUI extends javax.swing.JFrame {
     private Parser mapCartas;//Llama al parser para elaborar el map con todas las cartas
     private char fase = 'P';//Se indica que fase del juego estan
     private int numJugador;
-    /*private JTextField arrayDeCampos [] = new JTextField[13];
-    private boolean empezada;
-    private boolean cartascogias[] = new boolean[169];
-    private int turno;*/
-    
-    private static String todosLosPares[] = {"AA", "AKs", "AQs", "AJs", "ATs", "A9s", "A8s", "A7s",
-        "A6s", "A5s", "A4s", "A3s", "A2s",
-        "AKo", "KK", "KQs", "KJs", "KTs", "K9s", "K8s", "K7s", "K6s", "K5s", "K4s", "K3s", "K2s",
-        "AQo", "KQo", "QQ", "QJs", "QTs", "Q9s", "Q8s", "Q7s", "Q6s", "Q5s", "Q4s", "Q3s", "Q2s",
-        "AJo", "KJo", "QJo", "JJ", "JTs", "J9s", "J8s", "J7s", "J6s", "J5s", "J4s", "J3s", "J2s",
-        "ATo", "KTo", "QTo", "JTo", "TT", "T9s", "T8s", "T7s", "T6s", "T5s", "T4s", "T3s", "T2s",
-        "A9o", "K9o", "Q9o", "J9o", "T9o", "99", "98s", "97s", "96s", "95s", "94s", "93s", "92s",
-        "A8o", "K8o", "Q8o", "J8o", "T8o", "98o", "88", "87s", "86s", "85s", "84s", "83s", "82s",
-        "A7o", "K7o", "Q7o", "J7o", "T7o", "97o", "87o", "77", "76s", "75s", "74s", "73s", "72s",
-        "A6o", "K6o", "Q6o", "J6o", "T6o", "96o", "86o", "76o", "66", "65s", "64s", "63s", "62s",
-        "A5o", "K5o", "Q5o", "J5o", "T5o", "95o", "85o", "75o", "65o", "55", "54s", "53s", "52s",
-        "A4o", "K4o", "Q4o", "J4o", "T4o", "94o", "84o", "74o", "64o", "54o", "44", "43s", "42s",
-        "A3o", "K3o", "Q3o", "J3o", "T3o", "93o", "83o", "73o", "63o", "53o", "43o", "33", "32s",
-        "A2o", "K2o", "Q2o", "J2o", "T2o", "92o", "82o", "72o", "62o", "52o", "42o", "32o", "22",};
+  
     
     public GUI() {
         initComponents();
         mapCartas = new Parser();
         control = new Controller(mapCartas.getCartas(), fase);
-        /*empezada = false;
-        turno = 0;*/
+        
     }
 
     /**
@@ -60,6 +36,7 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonCEquity = new javax.swing.JButton();
         jTextField_Player1 = new javax.swing.JTextField();
         jTextField_Player2 = new javax.swing.JTextField();
         jTextField_Player3 = new javax.swing.JTextField();
@@ -91,6 +68,11 @@ public class GUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButtonCEquity.setBackground(new java.awt.Color(204, 0, 0));
+        jButtonCEquity.setText("Calcular Equity");
+        getContentPane().add(jButtonCEquity, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 710, 140, 30));
+        jButtonCEquity.setBorder(null);
         getContentPane().add(jTextField_Player1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, 200, -1));
         getContentPane().add(jTextField_Player2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 690, 200, -1));
         getContentPane().add(jTextField_Player3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 690, 200, -1));
@@ -107,63 +89,138 @@ public class GUI extends javax.swing.JFrame {
         jTextField1.setVisible(false);
 
         jButton_Aplicar.setText("Aplicar");
+        jButton_Aplicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AplicarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton_Aplicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 90, 30));
         jButton_Aplicar.setBorder(null);
         jButton_Aplicar.setVisible(false);
 
         jButtonRiver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carta.PNG"))); // NOI18N
+        jButtonRiver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRiverActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonRiver, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 360, 120, 160));
         jButtonRiver.setBorder(null);
 
         jButtonTurn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carta.PNG"))); // NOI18N
+        jButtonTurn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTurnActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonTurn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 360, 120, 160));
         jButtonTurn.setBorder(null);
 
         jButtonFlop3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carta.PNG"))); // NOI18N
+        jButtonFlop3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFlop3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonFlop3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 360, 120, 160));
         jButtonFlop3.setBorder(null);
 
         jButtonFLop2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carta.PNG"))); // NOI18N
+        jButtonFLop2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFLop2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonFLop2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 120, 160));
         jButtonFLop2.setBorder(null);
 
         jButtonFlop1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carta.PNG"))); // NOI18N
+        jButtonFlop1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFlop1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonFlop1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 120, 160));
         jButtonFlop1.setBorder(null);
 
         jButtonPlayer2_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carta.PNG"))); // NOI18N
+        jButtonPlayer2_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPlayer2_2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonPlayer2_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 560, 100, 130));
         jButtonPlayer2_2.setBorder(null);
 
         jButtonPlayer2_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carta.PNG"))); // NOI18N
+        jButtonPlayer2_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPlayer2_1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonPlayer2_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 560, 100, 130));
         jButtonPlayer2_1.setBorder(null);
 
         jButtonPlayer6_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carta.PNG"))); // NOI18N
+        jButtonPlayer6_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPlayer6_2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonPlayer6_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 100, 130));
         jButtonPlayer6_2.setBorder(null);
 
         jButtonPlayer6_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carta.PNG"))); // NOI18N
+        jButtonPlayer6_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPlayer6_1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonPlayer6_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 100, 130));
         jButtonPlayer6_1.setBorder(null);
 
         jButtonPlayer5_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carta.PNG"))); // NOI18N
+        jButtonPlayer5_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPlayer5_2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonPlayer5_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 110, 100, 130));
         jButtonPlayer5_2.setBorder(null);
 
         jButtonPlayer5_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carta.PNG"))); // NOI18N
+        jButtonPlayer5_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPlayer5_1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonPlayer5_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, 100, 130));
         jButtonPlayer5_1.setBorder(null);
 
         jButtonPlayer4_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carta.PNG"))); // NOI18N
+        jButtonPlayer4_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPlayer4_2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonPlayer4_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 350, 100, 130));
         jButtonPlayer4_2.setBorder(null);
 
         jButtonPlayer4_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carta.PNG"))); // NOI18N
+        jButtonPlayer4_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPlayer4_1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonPlayer4_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 350, 100, 130));
         jButtonPlayer4_1.setBorder(null);
 
         jButtonPlayer3_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carta.PNG"))); // NOI18N
+        jButtonPlayer3_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPlayer3_1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonPlayer3_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 560, 100, 130));
         jButtonPlayer3_1.setBorder(null);
 
@@ -177,12 +234,22 @@ public class GUI extends javax.swing.JFrame {
         jButtonPlayer3_2.setBorder(null);
 
         jButtonPlayer1_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carta.PNG"))); // NOI18N
+        jButtonPlayer1_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPlayer1_1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonPlayer1_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 100, 130));
         jButtonPlayer1_1.setBorder(null);
 
         setVisible(false);
         jButtonPlayer1_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carta.PNG"))); // NOI18N
         jButtonPlayer1_2.setText("jButton2");
+        jButtonPlayer1_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPlayer1_2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonPlayer1_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 100, 130));
         jButtonPlayer1_2.setBorder(null);
 
@@ -198,12 +265,275 @@ public class GUI extends javax.swing.JFrame {
 
     private void jButtonPlayer3_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlayer3_2ActionPerformed
         // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 5;
     }//GEN-LAST:event_jButtonPlayer3_2ActionPerformed
 
     private void jTextField_Player6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_Player6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_Player6ActionPerformed
 
+    private void jButtonPlayer1_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlayer1_1ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 0;
+    }//GEN-LAST:event_jButtonPlayer1_1ActionPerformed
+
+    private void jButtonPlayer1_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlayer1_2ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 1;
+    }//GEN-LAST:event_jButtonPlayer1_2ActionPerformed
+
+    private void jButtonPlayer2_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlayer2_1ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 2;
+    }//GEN-LAST:event_jButtonPlayer2_1ActionPerformed
+
+    private void jButtonPlayer2_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlayer2_2ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 3;
+    }//GEN-LAST:event_jButtonPlayer2_2ActionPerformed
+
+    private void jButtonPlayer3_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlayer3_1ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 4;
+    }//GEN-LAST:event_jButtonPlayer3_1ActionPerformed
+
+    private void jButtonPlayer4_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlayer4_1ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 6;
+    }//GEN-LAST:event_jButtonPlayer4_1ActionPerformed
+
+    private void jButtonPlayer4_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlayer4_2ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 7;
+    }//GEN-LAST:event_jButtonPlayer4_2ActionPerformed
+
+    private void jButtonPlayer6_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlayer6_1ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 10;
+        
+    }//GEN-LAST:event_jButtonPlayer6_1ActionPerformed
+
+    private void jButtonPlayer5_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlayer5_1ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 8;
+    }//GEN-LAST:event_jButtonPlayer5_1ActionPerformed
+
+    private void jButtonPlayer5_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlayer5_2ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 9;
+    }//GEN-LAST:event_jButtonPlayer5_2ActionPerformed
+
+    private void jButtonPlayer6_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlayer6_2ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 11;
+    }//GEN-LAST:event_jButtonPlayer6_2ActionPerformed
+
+    private void jButtonFlop1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFlop1ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 12;
+    }//GEN-LAST:event_jButtonFlop1ActionPerformed
+
+    private void jButtonFLop2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFLop2ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 13;
+    }//GEN-LAST:event_jButtonFLop2ActionPerformed
+
+    private void jButtonFlop3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFlop3ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 14;
+    }//GEN-LAST:event_jButtonFlop3ActionPerformed
+
+    private void jButtonTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTurnActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 15;
+    }//GEN-LAST:event_jButtonTurnActionPerformed
+
+    private void jButtonRiverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRiverActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setVisible(true);
+        jButton_Aplicar.setVisible(true);
+        this.numJugador = 16;
+    }//GEN-LAST:event_jButtonRiverActionPerformed
+
+    private void jButton_AplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AplicarActionPerformed
+        // TODO add your handling code here:
+        if(this.numJugador <= 11){
+            if(jTextField1.getText().equals("")){
+                String cadena = control.generoCartaAleatorio(this.numJugador);
+                establecerIcono(cadena);
+                jTextField1.setVisible(false);
+                jButton_Aplicar.setVisible(false);
+            }
+            else if(existeCarta(jTextField1.getText())){
+                String cadena = control.generoCarta(this.numJugador, jTextField1.getText());
+                establecerIcono(cadena);
+                jTextField1.setVisible(false);
+                jButton_Aplicar.setVisible(false);
+            }
+            else{
+                jTextField1.setText("Carta no existe");
+            }
+        }
+        else{
+            if(jTextField1.getText().equals("")){
+                String cadena = control.generoCartaAleatorioPostFlop(this.numJugador);
+                establecerIcono(cadena);
+                jTextField1.setVisible(false);
+                jButton_Aplicar.setVisible(false);
+            }
+            else if(existeCarta(jTextField1.getText())){
+                String cadena = control.generoCartaPostFlop(this.numJugador, jTextField1.getText());
+                establecerIcono(cadena);
+                jTextField1.setVisible(false);
+                jButton_Aplicar.setVisible(false);
+            }
+            else{
+                jTextField1.setText("Carta no existe");
+            }
+        }
+        
+    }//GEN-LAST:event_jButton_AplicarActionPerformed
+    
+    private boolean existeCarta(String cadena){
+
+        switch(cadena.charAt(0)){
+            case 'A': 
+                break;
+            case 'K':
+                break;
+            case 'Q':
+                break;
+            case 'J':
+                break;  
+            case 'T':
+                break; 
+            case '9':
+                break;  
+            case '8':
+                break; 
+            case '7':
+                break;
+            case '6':
+                break;  
+            case '5':
+                break;
+            case '4':
+                break;
+            case '3':
+                break; 
+            case '2':
+                break;  
+            default:
+                return false;
+        }
+        switch(cadena.charAt(1)){
+            case 'h': 
+                break;  
+            case 'd':
+                break;  
+            case 's':
+                break;  
+            case 'c':
+                break; 
+            default:
+                return false;
+        }
+        
+        if(cadena.length() != 2)
+            return false;
+        else 
+            return true;
+    }
+    
+    private void establecerIcono(String cadena){
+        
+        switch(numJugador){
+            case 16: 
+                jButtonRiver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break;
+            case 15:
+                jButtonTurn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break;
+            case 14: 
+                jButtonFlop3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break;
+            case 13:
+                jButtonFLop2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break;
+            case 12:
+                jButtonFlop1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break;
+            case 11:
+                jButtonPlayer6_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break;  
+            case 10:
+                jButtonPlayer6_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break; 
+            case 9:
+                jButtonPlayer5_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break;  
+            case 8:
+                jButtonPlayer5_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break;  
+            case 7:
+                jButtonPlayer4_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break;  
+            case 6:
+                jButtonPlayer4_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break;  
+            case 5:
+                jButtonPlayer3_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break;  
+            case 4:
+                jButtonPlayer3_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break;
+            case 3:
+                jButtonPlayer2_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break;  
+            case 2:
+                jButtonPlayer2_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break;
+            case 1:
+                jButtonPlayer1_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break;
+            case 0:
+                jButtonPlayer1_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cartasImg/" + cadena + ".jpg")));
+                break;
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -240,6 +570,7 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCEquity;
     private javax.swing.JButton jButtonFLop2;
     private javax.swing.JButton jButtonFlop1;
     private javax.swing.JButton jButtonFlop3;
@@ -269,82 +600,5 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_Player6;
     // End of variables declaration//GEN-END:variables
 
-    
-
-    /*private void generoCartas() {
-        int numero;
-        boolean elegida = false;
-        
- 
-         while(!elegida){
-             numero = (int) (Math.random() * 168) + 1;
-         if ( this.cartascogias[numero] == false){
-             this.cartascogias[numero] = true;
-             this.jTextField1.setText(todosLosPares[numero]);
-             elegida = true;
-            }
-        }
-         elegida = false;
-         while(!elegida){
-             numero = (int) (Math.random() * 168) + 1;
-         if ( this.cartascogias[numero] == false){
-             this.cartascogias[numero] = true;
-             this.jTextField3.setText(todosLosPares[numero]);
-             elegida = true;
-            }
-        }
-         elegida = false;
-         while(!elegida){
-             numero = (int) (Math.random() * 168) + 1;
-         if ( this.cartascogias[numero] == false){
-             this.cartascogias[numero] = true;
-             this.jTextField5.setText(todosLosPares[numero]);
-             elegida = true;
-            }
-        }
-                  elegida = false;
-         while(!elegida){
-             numero = (int) (Math.random() * 168) + 1;
-         if ( this.cartascogias[numero] == false){
-             this.cartascogias[numero] = true;
-             this.jTextField7.setText(todosLosPares[numero]);
-             elegida = true;
-            }
-        }
-         elegida = false;
-         while(!elegida){
-             numero = (int) (Math.random() * 168) + 1;
-         if ( this.cartascogias[numero] == false){
-             this.cartascogias[numero] = true;
-             this.jTextField9.setText(todosLosPares[numero]);
-             elegida = true;
-            }
-        }
-         elegida = false;
-         while(!elegida){
-             numero = (int) (Math.random() * 168) + 1;
-         if ( this.cartascogias[numero] == false){
-             this.cartascogias[numero] = true;
-             this.jTextField11.setText(todosLosPares[numero]);
-             elegida = true;
-            }
-        }
-         
-    }
-    
-    private String generoCart(){
-        int numero;
-        boolean elegida = false;
-        String sol ="";
- 
-         while(!elegida){
-             numero = (int) (Math.random() * 168) + 1;
-         if ( this.cartascogias[numero] == false){
-             this.cartascogias[numero] = true;
-             sol = todosLosPares[numero];
-             elegida = true;
-            }
-        }
-    return sol;
-    }*/
+   
 }

@@ -26,6 +26,22 @@
     <Property name="useNullLayout" type="boolean" value="false"/>
   </Layout>
   <SubComponents>
+    <Component class="javax.swing.JButton" name="jButtonCEquity">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Calcular Equity"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonCEquity.setBorder(null);"/>
+      </AuxValues>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="10" y="710" width="140" height="30"/>
+        </Constraint>
+      </Constraints>
+    </Component>
     <Component class="javax.swing.JTextField" name="jTextField_Player1">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -85,6 +101,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Aplicar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_AplicarActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButton_Aplicar.setBorder(null);&#xa;jButton_Aplicar.setVisible(false);"/>
       </AuxValues>
@@ -100,6 +119,9 @@
           <Image iconType="3" name="/img/carta.PNG"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRiverActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonRiver.setBorder(null);"/>
       </AuxValues>
@@ -115,6 +137,9 @@
           <Image iconType="3" name="/img/carta.PNG"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTurnActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonTurn.setBorder(null);"/>
       </AuxValues>
@@ -130,6 +155,9 @@
           <Image iconType="3" name="/img/carta.PNG"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFlop3ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonFlop3.setBorder(null);"/>
       </AuxValues>
@@ -145,6 +173,9 @@
           <Image iconType="3" name="/img/carta.PNG"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFLop2ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonFLop2.setBorder(null);"/>
       </AuxValues>
@@ -160,6 +191,9 @@
           <Image iconType="3" name="/img/carta.PNG"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFlop1ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonFlop1.setBorder(null);"/>
       </AuxValues>
@@ -175,6 +209,9 @@
           <Image iconType="3" name="/img/carta.PNG"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPlayer2_2ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonPlayer2_2.setBorder(null);"/>
       </AuxValues>
@@ -190,6 +227,9 @@
           <Image iconType="3" name="/img/carta.PNG"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPlayer2_1ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonPlayer2_1.setBorder(null);"/>
       </AuxValues>
@@ -205,6 +245,9 @@
           <Image iconType="3" name="/img/carta.PNG"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPlayer6_2ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonPlayer6_2.setBorder(null);"/>
       </AuxValues>
@@ -220,6 +263,9 @@
           <Image iconType="3" name="/img/carta.PNG"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPlayer6_1ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonPlayer6_1.setBorder(null);"/>
       </AuxValues>
@@ -235,6 +281,9 @@
           <Image iconType="3" name="/img/carta.PNG"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPlayer5_2ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonPlayer5_2.setBorder(null);"/>
       </AuxValues>
@@ -250,6 +299,9 @@
           <Image iconType="3" name="/img/carta.PNG"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPlayer5_1ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonPlayer5_1.setBorder(null);"/>
       </AuxValues>
@@ -265,6 +317,9 @@
           <Image iconType="3" name="/img/carta.PNG"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPlayer4_2ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonPlayer4_2.setBorder(null);"/>
       </AuxValues>
@@ -280,6 +335,9 @@
           <Image iconType="3" name="/img/carta.PNG"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPlayer4_1ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonPlayer4_1.setBorder(null);"/>
       </AuxValues>
@@ -295,6 +353,9 @@
           <Image iconType="3" name="/img/carta.PNG"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPlayer3_1ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonPlayer3_1.setBorder(null);"/>
       </AuxValues>
@@ -328,6 +389,9 @@
           <Image iconType="3" name="/img/carta.PNG"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPlayer1_1ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonPlayer1_1.setBorder(null);"/>
       </AuxValues>
@@ -344,6 +408,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="jButton2"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPlayer1_2ActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jButtonPlayer1_2.setBorder(null);"/>
         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="setVisible(false);"/>

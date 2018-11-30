@@ -8,23 +8,81 @@ package Controlador;
 import Game.Carta;
 import Game.Jugador;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-/**
- *
- * @author rauldiego
- */
 public class Controller {
     
-    HashMap<String,Carta> cartasDisponibles = new HashMap<>();//Map de cartas disponibles que buscan si la carta esta disponible a traves de la clave
-    ArrayList<Jugador>  jugadores = new ArrayList<>();//Lista con los jugadores 
+    Carta[][] cartasDisponibles = new Carta[13][4];//Map de cartas disponibles que buscan si la carta esta disponible a traves de la clave
+    ArrayList<Carta> cartasBoard = new ArrayList<>();
+    Jugador[] jugadores = new Jugador[6];//Lista con los jugadores 
     char fasePartida;//Se indica que fase del juego estan
     int total; //Numero totales de combos que pueden salir teniendo en cuenta las cartas  y huecos disponibles
     
-    public Controller(HashMap<String,Carta> map, char fase){
+    
+    public Controller(Carta[][] map, char fase){
         cartasDisponibles = map;
         fasePartida = fase;
     }
     
+    public String generoCartaAleatorio(int num){
+        int numero;
+        numero = (int) (Math.random() * 51) + 1;
+        
+        while(cartasDisponibles[numero/4][numero%4].getElegida()){
+            numero = (int) (Math.random() * 51) + 1;
+        }
+        
+        cartasDisponibles[numero/4][numero%4].setElegida(true);
+        jugadores[num/2].addCarta(cartasDisponibles[numero/4][numero%4]);
+        
+        return cartasDisponibles[numero/4][numero%4].toString();
+    }  
+    
+    public String generoCarta(int num, String carta){
+        
+        Carta c = new Carta(carta.charAt(0), carta.charAt(1));
+        
+        if(!cartasDisponibles[c.getValor() - 2][c.paloToNumber()].getElegida()){
+            cartasDisponibles[c.getValor() - 2][c.paloToNumber()].setElegida(true);
+            jugadores[num/2].addCarta(cartasDisponibles[c.getValor() - 2][c.paloToNumber()]);
+            return cartasDisponibles[c.getValor() - 2][c.paloToNumber()].toString();
+        }
+        else
+            return null;
+    }
+    
+    public String generoCartaAleatorioPostFlop(int num){
+        int numero;
+        numero = (int) (Math.random() * 51) + 1;
+        
+        while(cartasDisponibles[numero/4][numero%4].getElegida()){
+            numero = (int) (Math.random() * 51) + 1;
+        }
+        
+        cartasDisponibles[numero/4][numero%4].setElegida(true);
+        cartasBoard.add(cartasDisponibles[numero/4][numero%4]);
+        
+        return cartasDisponibles[numero/4][numero%4].toString();
+    }  
+    
+    public String generoCartaPostFlop(int num, String carta){
+        
+        Carta c = new Carta(carta.charAt(0), carta.charAt(1));
+        
+        if(!cartasDisponibles[c.getValor() - 2][c.paloToNumber()].getElegida()){
+            cartasDisponibles[c.getValor() - 2][c.paloToNumber()].setElegida(true);
+            cartasBoard.add(cartasDisponibles[c.getValor() - 2][c.paloToNumber()]);
+            return cartasDisponibles[c.getValor() - 2][c.paloToNumber()].toString();
+        }
+        else
+            return null;
+    }
+    
+    public int[] calcularEquity(){
+        //Aqui se inicializa el array de cartas no elegidas
+        //y se llama a la calculadora donde estara el metodo de combinatoria y el de comprobar quien gana
+        //En este se debe comprobar si estamos en preflop o postflop(y cuantas cartas hay)
+        //se calcula el porcentaje de equity y se pasa un array de int o un string con la equity de cada uno
+        return null;
+    }
     
 }

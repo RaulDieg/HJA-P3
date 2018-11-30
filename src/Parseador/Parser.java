@@ -6,25 +6,23 @@
 package Parseador;
 
 import Game.Carta;
-import java.util.HashMap;
 
-/**
- *
- * @author rauldiego
- */
+
+
 public class Parser {
-    /*este parser se encarga de:
-     * -Se le llama desde la GUI cuaan se inica el programa
-       -Elabora una map con todas las cartas de la baraja
-       -Y lo guarda en un atributo para pasarselo al controller cuando sea necesario*/
-    HashMap<String,Carta> cartasBaraja = new HashMap<>();
+    
+    Carta[][] cartasBaraja = new Carta[13][4];
     
     public Parser(){
-        //eleabora un hashmap con todas las cartas de la baraja;
-        
+
+        for(int i = 2; i < 15; i++){
+            for(int j = 0; j < 4; j++){
+                cartasBaraja[i][j] = new Carta(i,j);
+            }
+        }
     }
     
-    public HashMap<String,Carta> getCartas(){
+    public Carta[][] getCartas(){
         return cartasBaraja;
     }
 }

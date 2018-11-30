@@ -5,10 +5,7 @@
  */
 package Game;
 
-/**
- *
- * @author rauldiego
- */
+
 public class Calculadora {
     
 }
