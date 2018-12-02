@@ -7,7 +7,9 @@ package Controlador;
 
 import Game.Carta;
 import Game.Jugador;
+import Game.Calculadora;
 import java.util.ArrayList;
+
 
 public class Controller {
     
@@ -79,7 +81,18 @@ public class Controller {
     
     public int[] calcularEquity(){
         //Aqui se inicializa el array de cartas no elegidas
+        ArrayList<Carta> cartasNoDisponibles=new ArrayList();
+        Calculadora calculadora;
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < 4; j++) {
+                if(!cartasDisponibles[i][j].getElegida()){
+                    cartasNoDisponibles.add(cartasDisponibles[i][j]);
+                }   
+            }    
+        }  
         //y se llama a la calculadora donde estara el metodo de combinatoria y el de comprobar quien gana
+        calculadora=new Calculadora(cartasNoDisponibles,cartasBoard.size());
+     
         //En este se debe comprobar si estamos en preflop o postflop(y cuantas cartas hay)
         //se calcula el porcentaje de equity y se pasa un array de int o un string con la equity de cada uno
         return null;
