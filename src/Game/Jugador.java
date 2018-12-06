@@ -11,7 +11,8 @@ import java.util.ArrayList;
 
 public class Jugador {
     private ArrayList<Carta> cartasJugador = new ArrayList<>();
-    private int numOfWins = 0;
+    private double numOfWins = 0;
+    
     
     public Jugador(ArrayList<Carta> aux){
         
@@ -19,5 +20,12 @@ public class Jugador {
     
     public void addCarta(Carta aux){
         cartasJugador.add(aux);
+    }
+    
+    public void win(double a){
+        numOfWins += a;
+    }
+    public ArrayList<Carta> getCartas(){
+        return cartasJugador;
     }
 }

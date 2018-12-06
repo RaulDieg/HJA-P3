@@ -5,16 +5,22 @@
  */
 package Game;
 
+import Exceptions.MyExceptions;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Calculadora {
-    public ArrayList<Carta> cartas;
-    ArrayList<Carta> combination;
-    public int k;
+    private ArrayList<Carta> cartas = new ArrayList<>();
+    Jugador[] jugadores = new Jugador[6];
+    private ArrayList<Carta> combination = new ArrayList<>();
+    private int k;
     
-    public Calculadora(ArrayList<Carta> cartas,int a){
+    public Calculadora(ArrayList<Carta> cartas, Jugador[] aux, ArrayList<Carta> cartasBoard){
         this.cartas= new ArrayList(cartas);
-        switch(a){
+        combination.addAll(cartasBoard);
+        jugadores = aux;
+        switch(cartasBoard.size()){
             case 0:
                 this.k=5;
                 break;
@@ -32,19 +38,32 @@ public class Calculadora {
     
     public void combinatoria(int a, int b){
       /*Combinaciones de N elementos tomados en grupos de K. */  
-        if (k == 0) {
-         imprimir(combination);
-         return;
+        if (b == 0) {
+            calcularEquityCaso(combination);
+            return;
          }
-        for (int i = a; i <= cartas.size() - k; ++i) {
-        combination.add(cartas.get(i));
-        combinatoria(i+1, k-1);
-        combination.remove(combination.size()-1);
+        for (int i = a; i < cartas.size(); ++i) {
+            combination.add(cartas.get(i));
+            combinatoria(i+1, b - 1);
+            combination.remove(combination.size()-1);
         }
     }
     
-    void imprimir(ArrayList<Carta> cartas){
-        
+    public void calcularEquityCaso(ArrayList<Carta> cartas){
+        try {
+            for(int i = 0; i < 6 ; i++){
+                MejorManoJugador juego;
+                juego = new MejorManoJugador(cartas, jugadores[i].getCartas());
+                juego.mejorMano();
+                ArrayList<BestHand>  aux = new ArrayList<>();
+                BestHand mejormano = new BestHand(juego.getGanadoras(), juego.getValorMano());
+                aux.add(mejormano);
+            }
+            
+            //Aqui se compara quien gano o empato
+        } catch (MyExceptions ex) {
+                Logger.getLogger(Calculadora.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
     
 }

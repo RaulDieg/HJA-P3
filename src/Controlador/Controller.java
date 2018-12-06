@@ -91,7 +91,7 @@ public class Controller {
             }    
         }  
         //y se llama a la calculadora donde estara el metodo de combinatoria y el de comprobar quien gana
-        calculadora=new Calculadora(cartasNoDisponibles,cartasBoard.size());
+        calculadora=new Calculadora(cartasNoDisponibles, jugadores , cartasBoard);
      
         //En este se debe comprobar si estamos en preflop o postflop(y cuantas cartas hay)
         //se calcula el porcentaje de equity y se pasa un array de int o un string con la equity de cada uno
