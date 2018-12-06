@@ -20,4 +20,12 @@ public class BestHand {
         ganadora = a;
         value = b;
     }
+    
+    public ValorMano getValorMano(){
+        return value;
+    }
+    public ArrayList<Carta> getGanadora(){
+        return ganadora;
+    }
+
 }

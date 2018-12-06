@@ -36,10 +36,15 @@ public class Calculadora {
         }
     }
     
+    public Jugador[] calcularEquity(int a, int b){
+        combinatoria(a, b);
+        return jugadores;
+    }
+    
     public void combinatoria(int a, int b){
       /*Combinaciones de N elementos tomados en grupos de K. */  
         if (b == 0) {
-            calcularEquityCaso(combination);
+            comprobar(combination);
             return;
          }
         for (int i = a; i < cartas.size(); ++i) {
@@ -47,23 +52,93 @@ public class Calculadora {
             combinatoria(i+1, b - 1);
             combination.remove(combination.size()-1);
         }
+        
+
     }
     
-    public void calcularEquityCaso(ArrayList<Carta> cartas){
+    public void comprobar(ArrayList<Carta> cartas){
         try {
+            ArrayList<BestHand>  arrayJugadores = new ArrayList<>();
             for(int i = 0; i < 6 ; i++){
                 MejorManoJugador juego;
                 juego = new MejorManoJugador(cartas, jugadores[i].getCartas());
                 juego.mejorMano();
-                ArrayList<BestHand>  aux = new ArrayList<>();
                 BestHand mejormano = new BestHand(juego.getGanadoras(), juego.getValorMano());
-                aux.add(mejormano);
+                arrayJugadores.add(mejormano);
             }
-            
-            //Aqui se compara quien gano o empato
+            int pos = 0, sizeEmpates = 0;
+            int [] empates = new int[6]; 
+            boolean empate = false;
+            for(int i = 1; i < 6; i++){
+
+                if(arrayJugadores.get(pos).getValorMano().getCalidad() < arrayJugadores.get(i).getValorMano().getCalidad()){
+                    pos = 1;
+                    empate = false;
+                    sizeEmpates = 0;
+    
+                }
+                else if(arrayJugadores.get(pos).getValorMano().getCalidad() == arrayJugadores.get(i).getValorMano().getCalidad()){
+                    empate = true;
+                    if(sizeEmpates == 0){
+                        empates[sizeEmpates] = pos;
+                        sizeEmpates++;
+                        empates[sizeEmpates] = i;
+                        sizeEmpates++;
+                    }else{
+                        empates[sizeEmpates] = i;
+                        sizeEmpates++;
+                    }
+                }
+            }
+            if(!empate){
+                jugadores[pos].win(1);
+            }
+            else{
+                int mayor = 0;
+                int[] posEmpate = new int [6];
+                for(int i = 1; i < sizeEmpates; i++){
+                    mayor = empateComprobacion(arrayJugadores.get(empates[i]).getValorMano(), arrayJugadores.get(mayor).getGanadora(), arrayJugadores.get(empates[i]).getGanadora());
+                }
+            }
+
         } catch (MyExceptions ex) {
                 Logger.getLogger(Calculadora.class.getName()).log(Level.SEVERE, null, ex);
             }
+    }
+    
+    public int empateComprobacion(ValorMano valor, ArrayList<Carta> j1, ArrayList<Carta> j2){
+        int pos = 0;
+        switch(valor){
+            case HIGHCARD:
+                
+                break;
+            case PAIR:
+                
+                break;
+            case TWOPAIR:
+                
+                break;
+            case THREE:
+                
+                break;
+            case STRAIGHT:
+                
+                break;
+            case FLUSH:
+                
+                break;
+            case FULLHOUSE:
+                
+                break;
+            case POKER:
+                
+                break;
+            case STRAIGHTFLUSH:
+                
+                break;
+        }
+        
+        return pos;
     }
     
 }
