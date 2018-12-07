@@ -15,6 +15,7 @@ public class Calculadora {
     Jugador[] jugadores = new Jugador[6];
     private ArrayList<Carta> combination = new ArrayList<>();
     private int k;
+    private int total = 0;
     
     public Calculadora(ArrayList<Carta> cartas, Jugador[] aux, ArrayList<Carta> cartasBoard){
         this.cartas= new ArrayList(cartas);
@@ -36,8 +37,8 @@ public class Calculadora {
         }
     }
     
-    public Jugador[] calcularEquity(int a, int b){
-        combinatoria(a, b);
+    public Jugador[] calcularEquity(int a){
+        combinatoria(a, k);
         return jugadores;
     }
     
@@ -57,6 +58,7 @@ public class Calculadora {
     }
     
     public void comprobar(ArrayList<Carta> cartas){
+        total++;
         try {
             ArrayList<BestHand>  arrayJugadores = new ArrayList<>();
             for(int i = 0; i < 6 ; i++){
@@ -72,21 +74,38 @@ public class Calculadora {
             for(int i = 1; i < 6; i++){
 
                 if(arrayJugadores.get(pos).getValorMano().getCalidad() < arrayJugadores.get(i).getValorMano().getCalidad()){
-                    pos = 1;
+                    pos = i;
                     empate = false;
                     sizeEmpates = 0;
     
                 }
+                else if(arrayJugadores.get(pos).getValorMano().getCalidad() > arrayJugadores.get(i).getValorMano().getCalidad()){
+                    empate = false;
+                    sizeEmpates = 0;
+                }
                 else if(arrayJugadores.get(pos).getValorMano().getCalidad() == arrayJugadores.get(i).getValorMano().getCalidad()){
-                    empate = true;
-                    if(sizeEmpates == 0){
-                        empates[sizeEmpates] = pos;
-                        sizeEmpates++;
-                        empates[sizeEmpates] = i;
-                        sizeEmpates++;
-                    }else{
-                        empates[sizeEmpates] = i;
-                        sizeEmpates++;
+                   if(arrayJugadores.get(pos).getGanadora().get(0).getValor() < arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                        pos = i;
+                        empate = false;
+                        sizeEmpates = 0;
+    
+                    }
+                    else if(arrayJugadores.get(pos).getGanadora().get(0).getValor() > arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                        empate = false;
+                        sizeEmpates = 0;
+                    }
+                    else if(arrayJugadores.get(pos).getGanadora().get(0).getValor() == arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                        empate = true;
+                        if(sizeEmpates == 0){
+                            empates[sizeEmpates] = pos;
+                            sizeEmpates++;
+                            empates[sizeEmpates] = i;
+                            sizeEmpates++;
+                        }
+                        else{
+                            empates[sizeEmpates] = i;
+                            sizeEmpates++;
+                        }
                     }
                 }
             }
@@ -94,11 +113,9 @@ public class Calculadora {
                 jugadores[pos].win(1);
             }
             else{
-                int mayor = 0;
-                int[] posEmpate = new int [6];
-                for(int i = 1; i < sizeEmpates; i++){
-                    mayor = empateComprobacion(arrayJugadores.get(empates[i]).getValorMano(), arrayJugadores.get(mayor).getGanadora(), arrayJugadores.get(empates[i]).getGanadora());
-                }
+               for(int i = 0; i < sizeEmpates; i++){
+                   jugadores[i].win(1/sizeEmpates);
+               }
             }
 
         } catch (MyExceptions ex) {
@@ -106,39 +123,7 @@ public class Calculadora {
             }
     }
     
-    public int empateComprobacion(ValorMano valor, ArrayList<Carta> j1, ArrayList<Carta> j2){
-        int pos = 0;
-        switch(valor){
-            case HIGHCARD:
-                
-                break;
-            case PAIR:
-                
-                break;
-            case TWOPAIR:
-                
-                break;
-            case THREE:
-                
-                break;
-            case STRAIGHT:
-                
-                break;
-            case FLUSH:
-                
-                break;
-            case FULLHOUSE:
-                
-                break;
-            case POKER:
-                
-                break;
-            case STRAIGHTFLUSH:
-                
-                break;
-        }
-        
-        return pos;
+    public int getTotal(){
+        return total;
     }
-    
 }

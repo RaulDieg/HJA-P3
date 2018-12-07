@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class Jugador {
     private ArrayList<Carta> cartasJugador = new ArrayList<>();
     private double numOfWins = 0;
+    private double equity;
     
-    
-    public Jugador(ArrayList<Carta> aux){
+    public Jugador(){
         
     }
     
@@ -27,5 +27,12 @@ public class Jugador {
     }
     public ArrayList<Carta> getCartas(){
         return cartasJugador;
+    }
+    public void setEquity(double a){
+        equity = a;
+    }
+    
+    public double getWins(){
+        return numOfWins;
     }
 }

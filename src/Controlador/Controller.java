@@ -23,6 +23,9 @@ public class Controller {
     public Controller(Carta[][] map, char fase){
         cartasDisponibles = map;
         fasePartida = fase;
+        for(int i  = 0; i < 6; i++){
+            jugadores[i] = new Jugador();
+        }
     }
     
     public String generoCartaAleatorio(int num){
@@ -42,10 +45,10 @@ public class Controller {
     public String generoCarta(int num, String carta){
         
         Carta c = new Carta(carta.charAt(0), carta.charAt(1));
-        
+
         if(!cartasDisponibles[c.getValor() - 2][c.paloToNumber()].getElegida()){
             cartasDisponibles[c.getValor() - 2][c.paloToNumber()].setElegida(true);
-            jugadores[num/2].addCarta(cartasDisponibles[c.getValor() - 2][c.paloToNumber()]);
+            jugadores[num/2].addCarta(c);
             return cartasDisponibles[c.getValor() - 2][c.paloToNumber()].toString();
         }
         else
@@ -79,10 +82,11 @@ public class Controller {
             return null;
     }
     
-    public int[] calcularEquity(){
+    public double[] calcularEquity(){
         //Aqui se inicializa el array de cartas no elegidas
         ArrayList<Carta> cartasNoDisponibles=new ArrayList();
         Calculadora calculadora;
+        double [] equity = new double[6];
         for (int i = 0; i < 13; i++) {
             for (int j = 0; j < 4; j++) {
                 if(!cartasDisponibles[i][j].getElegida()){
@@ -92,10 +96,18 @@ public class Controller {
         }  
         //y se llama a la calculadora donde estara el metodo de combinatoria y el de comprobar quien gana
         calculadora = new Calculadora(cartasNoDisponibles, jugadores , cartasBoard);
-     
+        
+        jugadores = calculadora.calcularEquity(cartasNoDisponibles.size());
+        total = calculadora.getTotal();
+        for(int i = 0; i < 6; i++){
+            double aux;
+            aux = jugadores[i].getWins()/total;
+            jugadores[i].setEquity(aux);
+            equity[i] = aux;
+        }
         //En este se debe comprobar si estamos en preflop o postflop(y cuantas cartas hay)
         //se calcula el porcentaje de equity y se pasa un array de int o un string con la equity de cada uno
-        return null;
+        return equity;
     }
     
 }

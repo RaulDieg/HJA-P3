@@ -15,9 +15,9 @@ public class Parser {
     
     public Parser(){
 
-        for(int i = 2; i < 15; i++){
+        for(int i = 0; i < 13; i++){
             for(int j = 0; j < 4; j++){
-                cartasBaraja[i][j] = new Carta(i,j);
+                cartasBaraja[i][j] = new Carta(i + 2,j);
             }
         }
     }
