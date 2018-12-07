@@ -38,17 +38,18 @@ public class Calculadora {
     }
     
     public Jugador[] calcularEquity(int a){
-        combinatoria(a, k);
+        combinatoria(0, k);
         return jugadores;
     }
     
     public void combinatoria(int a, int b){
       /*Combinaciones de N elementos tomados en grupos de K. */  
         if (b == 0) {
-            comprobar(combination);
+           comprobar(combination);
+           System.out.println(combination.toString());
             return;
          }
-        for (int i = a; i < cartas.size(); ++i) {
+        for (int i = a; i < cartas.size()-b; ++i) {
             combination.add(cartas.get(i));
             combinatoria(i+1, b - 1);
             combination.remove(combination.size()-1);
