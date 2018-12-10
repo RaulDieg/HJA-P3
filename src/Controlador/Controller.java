@@ -28,6 +28,11 @@ public class Controller {
         }
     }
     
+    public void inicializarWins(){
+         for(int i  = 0; i < 6; i++){
+            jugadores[i].setWins(0);
+        }
+    }
     public String generoCartaAleatorio(int num){
         int numero;
         numero = (int) (Math.random() * 51) + 1;

@@ -23,15 +23,17 @@ public class Jugador {
     }
     
     public void win(double a){
-        numOfWins += a;
+        numOfWins = numOfWins + a;
     }
     public ArrayList<Carta> getCartas(){
         return cartasJugador;
     }
+    public void setWins(double a){
+        numOfWins = a;
+    }
     public void setEquity(double a){
         equity = a;
     }
-    
     public double getWins(){
         return numOfWins;
     }

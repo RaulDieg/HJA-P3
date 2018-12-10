@@ -25,19 +25,17 @@ public class MejorManoJugador {
 
     
     public MejorManoJugador(List<Carta>  cartas,  List<Carta> cartaJugador) throws MyExceptions {
-       Comparator<Carta> cmp = new Comparator<Carta>() {
+        cartas.add(cartaJugador.get(0));
+        cartas.add(cartaJugador.get(1));
 
-			public int compare(Carta o1, Carta o2) {
-				return o2.getValor() - o1.getValor();
-			}
-		};
 		
-		this.cartasBoard = new ArrayList<>();
+        this.cartasBoard = new ArrayList<>();
         for(int i = 0; i < cartas.size(); i++){
            this.cartasBoard.add(cartas.get(i));
         }
-        Collections.sort(this.cartasBoard, cmp);
+        cartasBoard.sort((Carta c1, Carta c2) -> new Integer(c2.getValor()).compareTo(new Integer(c1.getValor())));
         this.cartasJugador = cartaJugador;
+         cartasJugador.sort((Carta c1, Carta c2) -> new Integer(c2.getValor()).compareTo(new Integer(c1.getValor())));
     }
     
     public void mejorMano(){
@@ -123,10 +121,20 @@ public class MejorManoJugador {
                     }
                      // Si tenia un trio acumulado, y la de ahora es igual a la siguiente....
                      else if(pair(this.cartasBoard.get(i).getValor(),this.cartasBoard.get(i + 1).getValor())){
-                         value = ValorMano.FULLHOUSE;
-                         
-                         this.cartasGanadoras.add(this.cartasBoard.get(i));
-                        this.cartasGanadoras.add(this.cartasBoard.get(i + 1));
+                         if(i < cartasBoard.size() - 3 && pair(this.cartasBoard.get(i + 1).getValor(),this.cartasBoard.get(i + 2).getValor()) &&pair(this.cartasBoard.get(i + 2).getValor(),this.cartasBoard.get(i + 3).getValor())){
+                             value = ValorMano.POKER;
+                            this.cartasGanadoras = new ArrayList<>();
+                            this.cartasGanadoras.add(cartasBoard.get(i));
+                            this.cartasGanadoras.add(cartasBoard.get(i + 1));
+                            this.cartasGanadoras.add(cartasBoard.get(i + 2));
+                            this.cartasGanadoras.add(cartasBoard.get(i + 3));
+                         }
+                         else{
+                            value = ValorMano.FULLHOUSE;
+
+                            this.cartasGanadoras.add(this.cartasBoard.get(i));
+                            this.cartasGanadoras.add(this.cartasBoard.get(i + 1));
+                         }
                      }
                     
                     break;

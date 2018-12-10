@@ -465,6 +465,7 @@ public class GUI extends javax.swing.JFrame {
     private void jButtonCEquityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCEquityActionPerformed
         // TODO add your handling code here:
         double[] equity = new double[6];
+        control.inicializarWins();
         if(cartasSuficientes()){
             equity = this.control.calcularEquity();
             establecerEquity(equity);

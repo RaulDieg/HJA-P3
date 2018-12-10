@@ -20,6 +20,9 @@ public class Calculadora {
     public Calculadora(ArrayList<Carta> cartas, Jugador[] aux, ArrayList<Carta> cartasBoard){
         this.cartas= new ArrayList(cartas);
         combination.addAll(cartasBoard);
+         for(int i  = 0; i < 6; i++){
+            jugadores[i] = new Jugador();
+        }
         jugadores = aux;
         switch(cartasBoard.size()){
             case 0:
@@ -46,7 +49,7 @@ public class Calculadora {
       /*Combinaciones de N elementos tomados en grupos de K. */  
         if (b == 0) {
            comprobar(combination);
-           System.out.println(combination.toString());
+           //System.out.println(combination.toString());
             return;
          }
         for (int i = a; i < cartas.size()-b; ++i) {
@@ -67,10 +70,14 @@ public class Calculadora {
                 juego = new MejorManoJugador(cartas, jugadores[i].getCartas());
                 juego.mejorMano();
                 BestHand mejormano = new BestHand(juego.getGanadoras(), juego.getValorMano());
+                System.out.println( cartas +" "+juego.getGanadoras() + " " + juego.getValorMano());
                 arrayJugadores.add(mejormano);
+                cartas.remove(cartas.size() - 1);
+                cartas.remove(cartas.size() - 1);
             }
             int pos = 0, sizeEmpates = 0;
             int [] empates = new int[6]; 
+            
             boolean empate = false;
             for(int i = 1; i < 6; i++){
 
@@ -96,7 +103,7 @@ public class Calculadora {
                         sizeEmpates = 0;
                     }
                     else if(arrayJugadores.get(pos).getGanadora().get(0).getValor() == arrayJugadores.get(i).getGanadora().get(0).getValor()){
-                        empate = true;
+                        /*empate = true;
                         if(sizeEmpates == 0){
                             empates[sizeEmpates] = pos;
                             sizeEmpates++;
@@ -106,12 +113,14 @@ public class Calculadora {
                         else{
                             empates[sizeEmpates] = i;
                             sizeEmpates++;
-                        }
+                        }*/
+                        
                     }
                 }
             }
             if(!empate){
                 jugadores[pos].win(1);
+                
             }
             else{
                for(int i = 0; i < sizeEmpates; i++){
