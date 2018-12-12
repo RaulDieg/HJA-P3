@@ -8,6 +8,7 @@ package Controlador;
 import Game.Carta;
 import Game.Jugador;
 import Game.Calculadora;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
@@ -104,9 +105,11 @@ public class Controller {
         
         jugadores = calculadora.calcularEquity(cartasNoDisponibles.size());
         total = calculadora.getTotal();
+       
         for(int i = 0; i < 6; i++){
             double aux;
-            aux = jugadores[i].getWins()/total;
+            aux = (jugadores[i].getWins()/total)* 100;
+            aux = (double)Math.round(aux * 1000d) / 1000d;
             jugadores[i].setEquity(aux);
             equity[i] = aux;
         }

@@ -25,14 +25,16 @@ public class MejorManoJugador {
 
     
     public MejorManoJugador(List<Carta>  cartas,  List<Carta> cartaJugador) throws MyExceptions {
-        cartas.add(cartaJugador.get(0));
-        cartas.add(cartaJugador.get(1));
+        //cartas.add(cartaJugador.get(0));
+        //cartas.add(cartaJugador.get(1));
 
 		
         this.cartasBoard = new ArrayList<>();
         for(int i = 0; i < cartas.size(); i++){
            this.cartasBoard.add(cartas.get(i));
         }
+        cartasBoard.add(cartaJugador.get(0));
+        cartasBoard.add(cartaJugador.get(1));
         cartasBoard.sort((Carta c1, Carta c2) -> new Integer(c2.getValor()).compareTo(new Integer(c1.getValor())));
         this.cartasJugador = cartaJugador;
          cartasJugador.sort((Carta c1, Carta c2) -> new Integer(c2.getValor()).compareTo(new Integer(c1.getValor())));
@@ -103,6 +105,9 @@ public class MejorManoJugador {
                         this.cartasGanadoras.add(this.cartasBoard.get(i + 1));
                          if(i < cartasBoard.size() - 2  && pair(cartasBoard.get(i + 2).getValor(),cartasBoard.get(i + 1).getValor())){
                             value = ValorMano.POKER;
+                            this.cartasGanadoras = new ArrayList<>();
+                            this.cartasGanadoras.add(cartasBoard.get(i - 1));
+                            this.cartasGanadoras.add(cartasBoard.get(i));
                             this.cartasGanadoras.add(cartasBoard.get(i + 1));
                             this.cartasGanadoras.add(cartasBoard.get(i + 2));
                         }
@@ -387,7 +392,7 @@ public class MejorManoJugador {
     }
     public void cartasFlush(char aux){
         for(int i = 0; i < this.cartasBoard.size(); i++){
-            if(this.cartasBoard.get(i).getPalo() == aux && this.cartasGanadoras.size() < 5)
+            if(this.cartasBoard.get(i).getPalo() == aux)
                     this.cartasGanadoras.add(this.cartasBoard.get(i));
         }
     }

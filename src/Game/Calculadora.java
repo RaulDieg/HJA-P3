@@ -52,7 +52,7 @@ public class Calculadora {
            //System.out.println(combination.toString());
             return;
          }
-        for (int i = a; i < cartas.size()-b; ++i) {
+        for (int i = a; i < cartas.size(); ++i) {
             combination.add(cartas.get(i));
             combinatoria(i+1, b - 1);
             combination.remove(combination.size()-1);
@@ -70,10 +70,10 @@ public class Calculadora {
                 juego = new MejorManoJugador(cartas, jugadores[i].getCartas());
                 juego.mejorMano();
                 BestHand mejormano = new BestHand(juego.getGanadoras(), juego.getValorMano());
-                System.out.println( cartas +" "+juego.getGanadoras() + " " + juego.getValorMano());
+                //System.out.println( cartas +" "+juego.getGanadoras() + " " + juego.getValorMano());
                 arrayJugadores.add(mejormano);
-                cartas.remove(cartas.size() - 1);
-                cartas.remove(cartas.size() - 1);
+                //cartas.remove(cartas.size() - 1);
+                //cartas.remove(cartas.size() - 1);
             }
             int pos = 0, sizeEmpates = 0;
             int [] empates = new int[6]; 
@@ -87,35 +87,289 @@ public class Calculadora {
                     sizeEmpates = 0;
     
                 }
-                else if(arrayJugadores.get(pos).getValorMano().getCalidad() > arrayJugadores.get(i).getValorMano().getCalidad()){
-                    empate = false;
-                    sizeEmpates = 0;
-                }
+               
                 else if(arrayJugadores.get(pos).getValorMano().getCalidad() == arrayJugadores.get(i).getValorMano().getCalidad()){
-                   if(arrayJugadores.get(pos).getGanadora().get(0).getValor() < arrayJugadores.get(i).getGanadora().get(0).getValor()){
-                        pos = i;
-                        empate = false;
-                        sizeEmpates = 0;
-    
-                    }
-                    else if(arrayJugadores.get(pos).getGanadora().get(0).getValor() > arrayJugadores.get(i).getGanadora().get(0).getValor()){
-                        empate = false;
-                        sizeEmpates = 0;
-                    }
-                    else if(arrayJugadores.get(pos).getGanadora().get(0).getValor() == arrayJugadores.get(i).getGanadora().get(0).getValor()){
-                        /*empate = true;
-                        if(sizeEmpates == 0){
-                            empates[sizeEmpates] = pos;
-                            sizeEmpates++;
-                            empates[sizeEmpates] = i;
-                            sizeEmpates++;
-                        }
-                        else{
-                            empates[sizeEmpates] = i;
-                            sizeEmpates++;
-                        }*/
                         
-                    }
+                        switch(arrayJugadores.get(pos).getValorMano()){
+                            case HIGHCARD:
+                                if(arrayJugadores.get(pos).getGanadora().get(0).getValor() < arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                      pos = i;
+                                      empate = false;
+                                      sizeEmpates = 0;
+                                }
+                              
+                                
+                                else if(arrayJugadores.get(pos).getGanadora().get(0).getValor() == arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                    empate = true;
+                                    if(sizeEmpates == 0){
+                                        empates[sizeEmpates] = pos;
+                                        sizeEmpates++;
+                                        empates[sizeEmpates] = i;
+                                        sizeEmpates++;
+                                    }
+                                    else{
+                                        empates[sizeEmpates] = i;
+                                        sizeEmpates++;
+                                    }
+                                }
+                                break;
+                            case PAIR:
+                                 if(arrayJugadores.get(pos).getGanadora().get(0).getValor() < arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                      pos = i;
+                                      empate = false;
+                                      sizeEmpates = 0;
+                                }
+                                
+                                 else if(arrayJugadores.get(pos).getGanadora().get(0).getValor() == arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                    int j = 2;
+                                    boolean encontrado = false;
+                                    while(j < 5 && !encontrado){
+                                        if(arrayJugadores.get(pos).getGanadora().get(j).getValor() < arrayJugadores.get(i).getGanadora().get(j).getValor()){
+                                            pos = i;
+                                            empate = false;
+                                            sizeEmpates = 0;
+                                            encontrado = true;
+                                        }
+                                        else if(arrayJugadores.get(pos).getGanadora().get(j).getValor() > arrayJugadores.get(i).getGanadora().get(j).getValor()){
+                                               
+                                                encontrado = true;
+                                        }
+                                        j++;
+                                    }
+                                    if(!encontrado){
+                                        empate = true;
+                                        if(sizeEmpates == 0){
+                                            empates[sizeEmpates] = pos;
+                                            sizeEmpates++;
+                                            empates[sizeEmpates] = i;
+                                            sizeEmpates++;
+                                        }
+                                        else{
+                                            empates[sizeEmpates] = i;
+                                            sizeEmpates++;
+                                        }
+                                    }
+                                }
+                                break;
+                            case TWOPAIR:
+                                 if(arrayJugadores.get(pos).getGanadora().get(0).getValor() < arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                      pos = i;
+                                      empate = false;
+                                      sizeEmpates = 0;
+                                }
+                                 else if(arrayJugadores.get(pos).getGanadora().get(0).getValor() == arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                    int j = 2;
+                                    boolean encontrado = false;
+                                    while(j < 5 && !encontrado){
+                                        if(arrayJugadores.get(pos).getGanadora().get(j).getValor() < arrayJugadores.get(i).getGanadora().get(j).getValor()){
+                                            pos = i;
+                                            empate = false;
+                                            sizeEmpates = 0;
+                                            encontrado = true;
+                                        }
+                                        else if(arrayJugadores.get(pos).getGanadora().get(j).getValor() > arrayJugadores.get(i).getGanadora().get(j).getValor()){
+                                               
+                                                encontrado = true;
+                                        }
+                                        j++;
+                                    }
+                                    if(!encontrado){
+                                        empate = true;
+                                        if(sizeEmpates == 0){
+                                            empates[sizeEmpates] = pos;
+                                            sizeEmpates++;
+                                            empates[sizeEmpates] = i;
+                                            sizeEmpates++;
+                                        }
+                                        else{
+                                            empates[sizeEmpates] = i;
+                                            sizeEmpates++;
+                                        }
+                                    }
+                                }
+                                break;
+                            case THREE:
+                                 if(arrayJugadores.get(pos).getGanadora().get(0).getValor() < arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                      pos = i;
+                                      empate = false;
+                                      sizeEmpates = 0;
+                                }
+                                 else if(arrayJugadores.get(pos).getGanadora().get(0).getValor() == arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                    int j = 3;
+                                    boolean encontrado = false;
+                                    while(j < 5 && !encontrado){
+                                        if(arrayJugadores.get(pos).getGanadora().get(j).getValor() < arrayJugadores.get(i).getGanadora().get(j).getValor()){
+                                            pos = i;
+                                            empate = false;
+                                            sizeEmpates = 0;
+                                            encontrado = true;
+                                        }
+                                        else if(arrayJugadores.get(pos).getGanadora().get(j).getValor() > arrayJugadores.get(i).getGanadora().get(j).getValor()){
+                                                encontrado = true;
+                                        }
+                                        j++;
+                                    }
+                                    if(!encontrado){
+                                        empate = true;
+                                        if(sizeEmpates == 0){
+                                            empates[sizeEmpates] = pos;
+                                            sizeEmpates++;
+                                            empates[sizeEmpates] = i;
+                                            sizeEmpates++;
+                                        }
+                                        else{
+                                            empates[sizeEmpates] = i;
+                                            sizeEmpates++;
+                                        }
+                                    }
+                                }
+                                break;
+                            case STRAIGHT:
+                                if(arrayJugadores.get(pos).getGanadora().get(0).getValor() < arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                    pos = i;
+                                    empate = false;
+                                    sizeEmpates = 0;
+                                }
+                              
+                                else if(arrayJugadores.get(pos).getGanadora().get(0).getValor() == arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                    empate = true;
+                                    if(sizeEmpates == 0){
+                                        empates[sizeEmpates] = pos;
+                                        sizeEmpates++;
+                                        empates[sizeEmpates] = i;
+                                        sizeEmpates++;
+                                    }
+                                    else{
+                                        empates[sizeEmpates] = i;
+                                        sizeEmpates++;
+                                    }
+                                }
+                                break;
+                            case FLUSH:
+                                if(arrayJugadores.get(pos).getGanadora().get(0).getValor() < arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                      pos = i;
+                                      empate = false;
+                                      sizeEmpates = 0;
+                                }
+                               
+                                else if(arrayJugadores.get(pos).getGanadora().get(0).getValor() == arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                    int j = 1;
+                                    boolean encontrado = false;
+                                    while(j < 5 && !encontrado){
+                                        if(arrayJugadores.get(pos).getGanadora().get(j).getValor() < arrayJugadores.get(i).getGanadora().get(j).getValor()){
+                                            pos = i;
+                                            empate = false;
+                                            sizeEmpates = 0;
+                                            encontrado = true;
+                                        }
+                                        else if(arrayJugadores.get(pos).getGanadora().get(j).getValor() > arrayJugadores.get(i).getGanadora().get(j).getValor()){
+                                                encontrado = true;
+                                        }
+                                        j++;
+                                    }
+                                    if(!encontrado){
+                                        empate = true;
+                                        if(sizeEmpates == 0){
+                                            empates[sizeEmpates] = pos;
+                                            sizeEmpates++;
+                                            empates[sizeEmpates] = i;
+                                            sizeEmpates++;
+                                        }
+                                        else{
+                                            empates[sizeEmpates] = i;
+                                            sizeEmpates++;
+                                        }
+                                    }
+                                }
+                                break;
+                            case FULLHOUSE:
+                                if(arrayJugadores.get(pos).getGanadora().get(0).getValor() < arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                      pos = i;
+                                      empate = false;
+                                      sizeEmpates = 0;
+                                }
+                               
+                                else if(arrayJugadores.get(pos).getGanadora().get(0).getValor() == arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                    int j = 2;
+                                    boolean encontrado = false;
+                                    while(j < 5 && !encontrado){
+                                        if(arrayJugadores.get(pos).getGanadora().get(j).getValor() < arrayJugadores.get(i).getGanadora().get(j).getValor()){
+                                            pos = i;
+                                            empate = false;
+                                            sizeEmpates = 0;
+                                            encontrado = true;
+                                        }
+                                        else if(arrayJugadores.get(pos).getGanadora().get(j).getValor() > arrayJugadores.get(i).getGanadora().get(j).getValor()){
+                                                encontrado = true;
+                                        }
+                                        j++;
+                                    }
+                                    if(!encontrado){
+                                        empate = true;
+                                        if(sizeEmpates == 0){
+                                            empates[sizeEmpates] = pos;
+                                            sizeEmpates++;
+                                            empates[sizeEmpates] = i;
+                                            sizeEmpates++;
+                                        }
+                                        else{
+                                            empates[sizeEmpates] = i;
+                                            sizeEmpates++;
+                                        }
+                                    }
+                                }
+                                break;
+                            case POKER:
+                                if(arrayJugadores.get(pos).getGanadora().get(0).getValor() < arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                      pos = i;
+                                      empate = false;
+                                      sizeEmpates = 0;
+                                }
+
+                                else if(arrayJugadores.get(pos).getGanadora().get(0).getValor() == arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                    if(arrayJugadores.get(pos).getGanadora().get(4).getValor() < arrayJugadores.get(i).getGanadora().get(4).getValor()){
+                                      pos = i;
+                                      empate = false;
+                                      sizeEmpates = 0;
+                                    }
+                                    
+                                    else if(arrayJugadores.get(pos).getGanadora().get(4).getValor() == arrayJugadores.get(i).getGanadora().get(4).getValor()){
+                                        empate = true;
+                                   
+                                        if(sizeEmpates == 0){
+                                            empates[sizeEmpates] = pos;
+                                            sizeEmpates++;
+                                            empates[sizeEmpates] = i;
+                                            sizeEmpates++;
+                                        }
+                                        else{
+                                            empates[sizeEmpates] = i;
+                                            sizeEmpates++;
+                                        }
+                                     }
+                                }
+                                break;
+                            case STRAIGHTFLUSH:
+                                if(arrayJugadores.get(pos).getGanadora().get(0).getValor() < arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                      pos = i;
+                                      empate = false;
+                                      sizeEmpates = 0;
+                                }
+                                else if(arrayJugadores.get(pos).getGanadora().get(0).getValor() == arrayJugadores.get(i).getGanadora().get(0).getValor()){
+                                    empate = true;
+                                    if(sizeEmpates == 0){
+                                        empates[sizeEmpates] = pos;
+                                        sizeEmpates++;
+                                        empates[sizeEmpates] = i;
+                                        sizeEmpates++;
+                                    }
+                                    else{
+                                        empates[sizeEmpates] = i;
+                                        sizeEmpates++;
+                                    }
+                                }
+                                break;
+                        }
                 }
             }
             if(!empate){
@@ -123,9 +377,16 @@ public class Calculadora {
                 
             }
             else{
+                /*System.out.println("-------------------");
+                for(int i = 0; i < 6; i++){
+                     System.out.println((arrayJugadores.get(i).getGanadora()) + " J" + (i + 1) + " " 
+                             + (arrayJugadores.get(i).getValorMano()) + " " + arrayJugadores.get(i).getGanadora().get(0).getValor() + " " + cartas);
+                }*/
                for(int i = 0; i < sizeEmpates; i++){
-                   jugadores[i].win(1/sizeEmpates);
+                   //System.out.println((arrayJugadores.get(empates[i]).getGanadora()) + " J" + (empates[i] + 1));
+                   jugadores[empates[i]].win(1/sizeEmpates);
                }
+                //System.out.println("-------------------");
             }
 
         } catch (MyExceptions ex) {

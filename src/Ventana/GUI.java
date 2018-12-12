@@ -7,6 +7,7 @@ package Ventana;
 
 import Controlador.Controller;
 import Parseador.Parser;
+import java.text.DecimalFormat;
 
 
 public class GUI extends javax.swing.JFrame {
@@ -473,7 +474,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCEquityActionPerformed
     
     private void establecerEquity(double[] aux){
-        
+         DecimalFormat df = new DecimalFormat("#.000");
         jTextField_Player1.setText(Double.toString(aux[0]));
         jTextField_Player2.setText(Double.toString(aux[1]));
         jTextField_Player3.setText(Double.toString(aux[2]));
