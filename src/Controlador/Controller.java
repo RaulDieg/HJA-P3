@@ -19,13 +19,17 @@ public class Controller {
     Jugador[] jugadores = new Jugador[6];//Lista con los jugadores 
     char fasePartida;//Se indica que fase del juego estan
     int total; //Numero totales de combos que pueden salir teniendo en cuenta las cartas  y huecos disponibles
-    
+    boolean [] jugadoresSinFold = new boolean[6];
+
     
     public Controller(Carta[][] map, char fase){
         cartasDisponibles = map;
         fasePartida = fase;
         for(int i  = 0; i < 6; i++){
             jugadores[i] = new Jugador();
+        }
+        for(int i  = 0; i < 6; i++){
+            jugadoresSinFold[i] = false;
         }
     }
     
@@ -101,21 +105,30 @@ public class Controller {
             }    
         }  
         //y se llama a la calculadora donde estara el metodo de combinatoria y el de comprobar quien gana
-        calculadora = new Calculadora(cartasNoDisponibles, jugadores , cartasBoard);
+        calculadora = new Calculadora(cartasNoDisponibles, jugadores , cartasBoard, jugadoresSinFold);
         
         jugadores = calculadora.calcularEquity(cartasNoDisponibles.size());
         total = calculadora.getTotal();
-       
+     
         for(int i = 0; i < 6; i++){
-            double aux;
-            aux = (jugadores[i].getWins()/total)* 100;
-            aux = (double)Math.round(aux * 1000d) / 1000d;
-            jugadores[i].setEquity(aux);
-            equity[i] = aux;
+             double aux;
+            if(!jugadoresSinFold[i]){
+                aux = (jugadores[i].getWins()/total)* 100;
+                aux = (double)Math.round(aux * 1000d) / 1000d;
+                jugadores[i].setEquity(aux);
+                equity[i] = aux;
+            }
+            else{
+                equity[i] = -1;
+            }
         }
         //En este se debe comprobar si estamos en preflop o postflop(y cuantas cartas hay)
         //se calcula el porcentaje de equity y se pasa un array de int o un string con la equity de cada uno
         return equity;
     }
     
+    public void foldear(int num){
+        
+       jugadoresSinFold[num] = true;
+    }
 }

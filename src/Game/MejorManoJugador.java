@@ -25,9 +25,7 @@ public class MejorManoJugador {
 
     
     public MejorManoJugador(List<Carta>  cartas,  List<Carta> cartaJugador) throws MyExceptions {
-        //cartas.add(cartaJugador.get(0));
-        //cartas.add(cartaJugador.get(1));
-
+    
 		
         this.cartasBoard = new ArrayList<>();
         for(int i = 0; i < cartas.size(); i++){

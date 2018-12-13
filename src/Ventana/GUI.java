@@ -19,6 +19,7 @@ public class GUI extends javax.swing.JFrame {
     private Parser mapCartas;//Llama al parser para elaborar el map con todas las cartas
     private char fase = 'P';//Se indica que fase del juego estan
     private int numJugador;
+    private int numFold;
     private boolean[] cartasFijadas = {false, false, false, false, false, false,false, false, false,false, false, false,false, false, false};
     
     public GUI() {
@@ -45,6 +46,12 @@ public class GUI extends javax.swing.JFrame {
         jTextField_Player5 = new javax.swing.JTextField();
         jTextField_Player6 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
+        jButtonFold2 = new javax.swing.JButton();
+        jButtonFold3 = new javax.swing.JButton();
+        jButtonFold4 = new javax.swing.JButton();
+        jButtonFold5 = new javax.swing.JButton();
+        jButtonFold6 = new javax.swing.JButton();
+        jButtonFold1 = new javax.swing.JButton();
         jButton_Aplicar = new javax.swing.JButton();
         jButtonRiver = new javax.swing.JButton();
         jButtonTurn = new javax.swing.JButton();
@@ -93,6 +100,54 @@ public class GUI extends javax.swing.JFrame {
         getContentPane().add(jTextField_Player6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 200, -1));
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 180, 30));
         jTextField1.setVisible(false);
+
+        jButtonFold2.setText("FOLD");
+        jButtonFold2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFold2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonFold2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 620, 80, -1));
+
+        jButtonFold3.setText("FOLD");
+        jButtonFold3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFold3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonFold3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 630, 80, -1));
+
+        jButtonFold4.setText("FOLD");
+        jButtonFold4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFold4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonFold4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 320, 80, -1));
+
+        jButtonFold5.setText("FOLD");
+        jButtonFold5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFold5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonFold5, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 150, 80, -1));
+
+        jButtonFold6.setText("FOLD");
+        jButtonFold6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFold6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonFold6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 80, -1));
+
+        jButtonFold1.setText("FOLD");
+        jButtonFold1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFold1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonFold1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 80, -1));
 
         jButton_Aplicar.setText("Aplicar");
         jButton_Aplicar.addActionListener(new java.awt.event.ActionListener() {
@@ -472,15 +527,67 @@ public class GUI extends javax.swing.JFrame {
             establecerEquity(equity);
         }
     }//GEN-LAST:event_jButtonCEquityActionPerformed
+
+    private void jButtonFold1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFold1ActionPerformed
+        // TODO add your handling code here:
+        this.numFold = 0;
+        foldear();
+        jTextField_Player1.setVisible(false);
+    }//GEN-LAST:event_jButtonFold1ActionPerformed
+
+    private void jButtonFold2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFold2ActionPerformed
+        // TODO add your handling code here:
+        this.numFold = 1;
+        foldear();
+        jTextField_Player2.setVisible(false);
+    }//GEN-LAST:event_jButtonFold2ActionPerformed
+
+    private void jButtonFold3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFold3ActionPerformed
+        // TODO add your handling code here:
+        
+        this.numFold = 2;
+        foldear();
+        jTextField_Player3.setVisible(false);
+    }//GEN-LAST:event_jButtonFold3ActionPerformed
+
+    private void jButtonFold4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFold4ActionPerformed
+        // TODO add your handling code here:
+        this.numFold = 3;
+        foldear();
+        jTextField_Player4.setVisible(false);
+    }//GEN-LAST:event_jButtonFold4ActionPerformed
+
+    private void jButtonFold5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFold5ActionPerformed
+        // TODO add your handling code here:
+        this.numFold = 4;
+        foldear();
+        jTextField_Player5.setVisible(false);
+    }//GEN-LAST:event_jButtonFold5ActionPerformed
+
+    private void jButtonFold6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFold6ActionPerformed
+        // TODO add your handling code here:
+        this.numFold = 5;
+        foldear();
+        jTextField_Player6.setVisible(false);
+    }//GEN-LAST:event_jButtonFold6ActionPerformed
     
+    private void foldear(){
+        control.foldear(numFold);
+    }
     private void establecerEquity(double[] aux){
          DecimalFormat df = new DecimalFormat("#.000");
-        jTextField_Player1.setText(Double.toString(aux[0]));
-        jTextField_Player2.setText(Double.toString(aux[1]));
-        jTextField_Player3.setText(Double.toString(aux[2]));
-        jTextField_Player4.setText(Double.toString(aux[3]));
-        jTextField_Player5.setText(Double.toString(aux[4]));
-        jTextField_Player6.setText(Double.toString(aux[5]));
+        if(aux[0] != -1)           
+            jTextField_Player1.setText(Double.toString(aux[0]));
+        if(aux[1] != -1)
+            jTextField_Player2.setText(Double.toString(aux[1]));
+        if(aux[2] != -1)
+            jTextField_Player3.setText(Double.toString(aux[2]));
+        if(aux[3] != -1)
+            jTextField_Player4.setText(Double.toString(aux[3]));
+        if(aux[4] != -1)
+            jTextField_Player5.setText(Double.toString(aux[4]));
+        if(aux[5] != -1)
+            jTextField_Player6.setText(Double.toString(aux[5]));
         
     }
     
@@ -696,6 +803,12 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonFLop2;
     private javax.swing.JButton jButtonFlop1;
     private javax.swing.JButton jButtonFlop3;
+    private javax.swing.JButton jButtonFold1;
+    private javax.swing.JButton jButtonFold2;
+    private javax.swing.JButton jButtonFold3;
+    private javax.swing.JButton jButtonFold4;
+    private javax.swing.JButton jButtonFold5;
+    private javax.swing.JButton jButtonFold6;
     private javax.swing.JButton jButtonPlayer1_1;
     private javax.swing.JButton jButtonPlayer1_2;
     private javax.swing.JButton jButtonPlayer2_1;
